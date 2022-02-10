@@ -25,7 +25,8 @@
 	[GET] /member/get/{uid} --> 取得使用者資料 --- (有該使用者) --> HttpStatus.OK
 										|
 										|
-										-- --- -- (找不到使用者) --> return null --> HttpStatus.OK								
+										-- --- -- (找不到使用者) --> return null --> HttpStatus.OK		
+										
 	API 3（統一處理 exception 測試）：
 	
 	[GET] /test/error --> return (HTTP 500) 統一處理 exception. --> HttpStatus.INTERNAL_SERVER_ERROR								
