@@ -14,8 +14,7 @@ import tw.hyin.demo.MemberServiceApplication;
 /**
  * @author yingHan on 2021.
  */
-//@RunWith(SpringRunner.class)//讓測試運行於 spring 環境
-@ExtendWith(SpringExtension.class)//junit 5 需使用 extendWith 替代 RunWith (SpringExtension 是 spring 5 中 spring test 的集成)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = MemberServiceApplication.class)
 @WebAppConfiguration
 public abstract class AbstractRestTest {

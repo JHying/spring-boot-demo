@@ -2,6 +2,7 @@ package tw.hyin.demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -9,34 +10,36 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.data.rest.configuration.SpringDataRestConfiguration;
 import springfox.documentation.spring.web.plugins.Docket;
 
 /**
- * @author H-yin on 2021.
+ * @author H-yin on 2022.
  * @Description ./swagger-ui/#/
  */
 @Configuration
 @EnableOpenApi
+@Import(SpringDataRestConfiguration.class)//取得 spring-data-rest 自動產生的 API
 public class SwaggerConfig {
 
-    @Bean
-    public Docket createRestApi() {
-        return new Docket(DocumentationType.OAS_30)
-                .apiInfo(apiInfo())
-                .forCodeGeneration(true)
-                .select()
-                //掃描所有 API (除了被 @ApiIgnore 者)
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build();
-    }
+	@Bean
+	public Docket createRestApi() {
+		return new Docket(DocumentationType.OAS_30)
+				.apiInfo(apiInfo())
+				.forCodeGeneration(true)
+				.select()
+				// 掃描所有 API (除了被 @ApiIgnore 者)
+				.apis(RequestHandlerSelectors.any())
+				.paths(PathSelectors.any())
+				.build();
+	}
 
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("spec of APIs")
-                .description("Spring Boot 2 & Hibernate 5 & Swagger 3")
-                .version("1.0")
-                .build();
-    }
+	private ApiInfo apiInfo() {
+		return new ApiInfoBuilder()
+				.title("spec of APIs")
+				.description("Spring Boot 2 & Hibernate 5 & Swagger 3")
+				.version("1.0")
+				.build();
+	}
 
 }

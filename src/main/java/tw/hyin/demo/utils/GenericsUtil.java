@@ -4,7 +4,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
- * @author H-yin on 2020.
+ * @author H-yin on 2022.
  */
 @SuppressWarnings("rawtypes")
 public class GenericsUtil {

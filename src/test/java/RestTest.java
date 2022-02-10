@@ -24,8 +24,6 @@ public class RestTest extends AbstractRestTest {
     public void getUser() {
         try {
             String uri = "/get/{id}";
-//            LoginReq loginReq = new LoginReq("testAdmin", "testPassword");
-//            String inputJson = super.mapToJson(loginReq);
             MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
                     .contentType(MediaType.APPLICATION_JSON_VALUE).param("id", "testUser")).andReturn();
             int status = mvcResult.getResponse().getStatus();
