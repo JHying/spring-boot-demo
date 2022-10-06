@@ -1,3 +1,4 @@
+import tw.hyin.demo.DemoApplication;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,13 +10,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import tw.hyin.demo.MemberServiceApplication;
-
 /**
  * @author yingHan on 2021.
  */
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = MemberServiceApplication.class)
+@ExtendWith(SpringExtension.class)//junit 5 需使用 extendWith 替代 RunWith (SpringExtension 是 spring 5 中 spring test 的集成)
+@SpringBootTest(classes = DemoApplication.class)
 @WebAppConfiguration
 public abstract class AbstractRestTest {
 

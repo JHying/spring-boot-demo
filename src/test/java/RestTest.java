@@ -1,9 +1,11 @@
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.util.AssertionErrors.assertNotNull;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -12,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 /**
  * @author H-yin on 2021.
  */
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RestTest extends AbstractRestTest {
 
     @Override
@@ -21,11 +24,10 @@ public class RestTest extends AbstractRestTest {
     }
 
     @Test
-    public void getUser() {
+    public void test() {
         try {
-            String uri = "/get/{id}";
-            MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
-                    .contentType(MediaType.APPLICATION_JSON_VALUE).param("id", "testUser")).andReturn();
+            String uri = "/test";
+            MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).contentType(MediaType.APPLICATION_JSON_VALUE)).andReturn();
             int status = mvcResult.getResponse().getStatus();
             assertEquals(200, status);
             String content = mvcResult.getResponse().getContentAsString();

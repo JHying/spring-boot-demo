@@ -7,15 +7,27 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.5</version>
-		<relativePath />
+		<version>2.7.4</version>
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>tw.hyin.demo</groupId>
-	<artifactId>member-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>spring-boot-demo</artifactId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
-	<name>member-service</name>
-	<description>spring boot rest api demo</description>
+	<name>spring-boot-demo</name>
+	<description>spring-boot-demo</description>
+
+	<repositories>
+		<repository>
+			<id>mvn-repo</id>
+			<!-- 私有倉庫配置 https://raw.github.com/用戶名/倉庫名/分支名 -->
+			<url>https://raw.github.com/JHying/mvn-repo/main</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<!-- Maven 控制 Spring Profile -->
 	<profiles>
@@ -63,7 +75,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<!--<encoding>UTF-8</encoding> -->
+					<fork>false</fork>
 					<includeSystemScope>true</includeSystemScope>
 					<sourceDirectory>${pom.basedir}/src/main/java</sourceDirectory>
 				</configuration>
@@ -72,17 +84,20 @@
 	</build>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
+		<!--analysis with sonar-->
+		<sonar.qualitygate.wait>true</sonar.qualitygate.wait>
 	</properties>
 
 	<dependencies>
 
 		<!-- for RESTful API -->
+		<!-- Exclude Spring Boot's Default Logging -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-rest -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -116,24 +131,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--簡化POJO創建工具 -->
-		<!--lombok 提供 @Data，無須寫 getter、setter、constructor -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- json 轉換工具 -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-		</dependency>
-
 		<!-- spring 默認使用yml配置，若要用xml或properties，需使用configuration-processor -->
 		<!-- e.g. @PropertySource("classpath:your.properties") -->
 		<dependency>
@@ -148,41 +145,31 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-		</dependency>
-
-		<!--swagger -->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-boot-starter</artifactId>
-			<version>3.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-data-rest</artifactId>
-			<version>3.0.0</version>
-		</dependency>
-
-		<!--DateUtil -->
-		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-core</artifactId>
-		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<!--簡化POJO創建工具 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- shared-utils -->
+		<dependency>
+			<groupId>tw.hyin.java</groupId>
+			<artifactId>hyin-shared-utils</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>tw.hyin.java</groupId>
+			<artifactId>hyin-db-utils</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 
 	</dependencies>

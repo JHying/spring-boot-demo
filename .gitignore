@@ -45,8 +45,11 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Docker
+*.sh
+Dockerfile
+
 /target
 /logs
-/temp
-/src/main/resources/env/prod
+/.idea
 *.iml
