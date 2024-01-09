@@ -1,34 +1,27 @@
 package tw.hyin.demo.config.web;
 
-import java.io.IOException;
-import java.nio.file.AccessDeniedException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.TypeMismatchException;
+import jakarta.security.auth.message.AuthException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.lang.NonNullApi;
-import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
-import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import tw.hyin.java.utils.Log;
 import tw.hyin.java.utils.http.ResponseObj;
 
-import javax.annotation.Nullable;
-import javax.security.auth.message.AuthException;
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author YingHan 2022
@@ -41,8 +34,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
      * 統一處理 @valid 產生之例外事件
      */
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                  HttpHeaders headers, HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         List<String> errors = new ArrayList<>();
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
             errors.add(error.getField() + ": " + error.getDefaultMessage());
@@ -61,7 +53,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers,
-                                                                  HttpStatus status, WebRequest request) {
+                                                                  HttpStatusCode status, WebRequest request) {
         List<String> errors = new ArrayList<>();
         errors.add("Bad Request");
         errors.add(ex.getMessage());
@@ -74,7 +66,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
      * 處理常見的 Bad Request 例外事件
      */
     @Override
-    public ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    public ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         List<String> errors = new ArrayList<>();
         errors.add("Bad Request");
         errors.add(ex.getMessage());

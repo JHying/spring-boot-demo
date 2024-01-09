@@ -16,7 +16,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class UserData implements Serializable {
 
-    private String userID;
+    private String userId;
     private String userName;
 
 }

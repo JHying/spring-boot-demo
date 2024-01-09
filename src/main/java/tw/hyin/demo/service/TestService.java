@@ -21,8 +21,8 @@ public class TestService {
         this.userInfoRepository = userInfoRepository;
     }
 
-    UserInfo findUser(String userID) {
-        return this.userInfoRepository.findById(userID).orElse(null);
+    UserInfo findUser(String userId) {
+        return this.userInfoRepository.findById(userId).orElse(null);
     }
 
 }
