@@ -10,7 +10,7 @@
 	<!-- 保留日誌的天數 -->
 	<Property name="MaxBackupDate" value="10" />
 	<property name="CONSOLE_PATTERN"
-			  value="[%d{yyyy-MM-dd HH:mm:ss.SSS,GMT+8}] %-5level [%t] [%logger{0}.%M\\(%F:%L\\)] - %msg%n" />
+			  value="[%d{yyyy-MM-dd HH:mm:ss.SSS,GMT+8}] %-5level [%t] [%logger{0}.%M\(%F:%L\)] - %msg%n" />
 
 	<!-- 控制檯日誌的配置 -->
 	<appender name="console"

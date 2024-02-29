@@ -1,5 +1,7 @@
 package tw.hyin.demo.service;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import tw.hyin.demo.entity.UserInfo;
 import tw.hyin.demo.repo.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class TestService {
 
-    private final UserInfoRepository userInfoRepository;
-
     @Autowired
-    public TestService(UserInfoRepository userInfoRepository) {
-        this.userInfoRepository = userInfoRepository;
-    }
+    private final UserInfoRepository userInfoRepository;
 
     UserInfo findUser(String userId) {
         return this.userInfoRepository.findById(userId).orElse(null);

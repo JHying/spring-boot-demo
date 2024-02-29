@@ -1,8 +1,8 @@
 # Introduction
 
-Spring Boot 專案雛形，只有測試 API，導入 swagger。
+Spring Boot Demo，只有測試 API、swagger。
 
-(程式執行後可以在 localhost:8080/swagger-ui/#/ 查看 API 規格)
+(程式執行後可以在 localhost:8080/demo/swagger-ui.html 查看 API 規格)
 
 1. 開發環境：IntelliJ IDEA 2022.1
 
@@ -12,9 +12,9 @@ Spring Boot 專案雛形，只有測試 API，導入 swagger。
 
 4. 執行：jar as service
 
-5. 主框架：spring boot 3.2.1
+5. 主框架：spring boot 3.2.3
 
-最後更新時間：2024/01/09
+最後更新時間：2024/02/29
 
 ### Detail
 
@@ -28,4 +28,4 @@ Spring Boot 專案雛形，只有測試 API，導入 swagger。
 
 5. logback-test.xml：log 配置檔－－分別產生 INFO 及 ERROR 資訊的 Log 檔
 
-6. 用到個人倉庫 https://github.com/JHying/mvn-repo
+6. 個人倉庫 https://github.com/JHying/mvn-repo

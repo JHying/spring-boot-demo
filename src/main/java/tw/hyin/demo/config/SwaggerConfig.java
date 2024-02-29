@@ -1,11 +1,8 @@
 package tw.hyin.demo.config;
 
+import io.swagger.v3.oas.models.OpenAPI;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import springfox.documentation.oas.annotations.EnableOpenApi;
-import springfox.documentation.spring.data.rest.configuration.SpringDataRestConfiguration;
-import springfox.documentation.spring.web.plugins.Docket;
 import tw.hyin.java.utils.config.SwaggerCreater;
 
 /**
@@ -13,12 +10,10 @@ import tw.hyin.java.utils.config.SwaggerCreater;
  * @Description ./swagger-ui/#/
  */
 @Configuration
-@EnableOpenApi //取代@EnableSwagger2
-@Import(SpringDataRestConfiguration.class)//取得 spring-data-rest 自動產生的 API
 public class SwaggerConfig {
 
     @Bean
-    public Docket createRestApi() {
+    public OpenAPI createRestApi() {
         return SwaggerCreater.createSwaggerDefault("Description of APIs", "1.0");
     }
 
