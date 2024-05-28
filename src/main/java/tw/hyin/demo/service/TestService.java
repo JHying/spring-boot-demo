@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class TestService {
 
-    @Autowired
     private final UserInfoRepository userInfoRepository;
 
     UserInfo findUser(String userId) {
